@@ -1,12 +1,12 @@
 $(function () {
   $("#startButton").on("click", function () {
     validateNicknames();
-  });
-});
 
-$(".boardSpace").on("click", function () {
-  var locationOnBoard = this.id;
-  gameLogic(locationOnBoard);
+    $(".boardSpace").on("click", function () {
+      var locationOnBoard = this.id;
+      gameLogic(locationOnBoard);
+    });
+  });
 });
 
 var lst1 = {
@@ -48,10 +48,23 @@ function gameLogic(locationOnBoard) {
   }
   if (conditionToWin()) {
     currentPlayer = verifyTurn();
-    alert(currentPlayer + " wins!");
-    return false;
+    $(".boardSpace").off();
+    setTimeout(() => {
+      alert(currentPlayer + " wins!");
+      restartOption();
+    }, 500);
   }
   round++;
+
+  function restartOption() {
+    setTimeout(() => {
+      $("#restart")
+        .removeClass("invisible")
+        .on("click", function () {
+          location.reload();
+        });
+    }, 800);
+  }
 }
 
 function conditionToWin() {
