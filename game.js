@@ -128,7 +128,9 @@ function play(locationOnBoard) {
     score = 1;
   }
 
-  $("#" + locationOnBoard).css("background-image", icon);
+  $("#" + locationOnBoard)
+    .css("background-image", icon)
+    .off();
   lst1[locationOnBoard] = score;
 }
 
